@@ -23,3 +23,4 @@ public abstract class BaseCard : ICard
         UnityEngine.Debug.Log("Played " + Name);
     }
 }
+

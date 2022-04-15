@@ -39,3 +39,32 @@ public class DrawFourCard : WildCard
         Rarity = 3.0f;
     }
 }
+
+public class SkipCard : BaseCard
+{
+    public SkipCard(int color)
+    {
+        Color = color;
+        Type = "skip";
+        Rarity = 5.0f;
+    }
+}
+
+public class ReverseCard : BaseCard
+{
+    public ReverseCard(int color)
+    {
+        Color = color;
+        Type = "reverse";
+        Rarity = 5.0f;
+    }
+}
+
+public enum Color
+{
+    WILD,
+    RED,
+    BLUE,
+    GREEN,
+    YELLOW
+}
