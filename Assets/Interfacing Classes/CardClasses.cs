@@ -7,8 +7,8 @@ public class NumberCard : BaseCard
         Number = number;
         Color = color;
         Type = "number";
-        Rarity = 5.0f;
     }
+
 }
 
 public class WildCard : BaseCard
@@ -17,7 +17,6 @@ public class WildCard : BaseCard
     {
         Color = 0;
         Type = "wild";
-        Rarity = 1.0f;
     }
 }
 
@@ -27,16 +26,15 @@ public class DrawTwoCard : BaseCard
     {
         Color = color;
         Type = "draw_two";
-        Rarity = 2.0f;
     }
 }
 
-public class DrawFourCard : WildCard
+public class DrawFourCard : BaseCard
 {
-    public DrawFourCard() : base()
+    public DrawFourCard()
     {
+        Color = 0;
         Type = "draw_four";
-        Rarity = 3.0f;
     }
 }
 
@@ -46,7 +44,6 @@ public class SkipCard : BaseCard
     {
         Color = color;
         Type = "skip";
-        Rarity = 5.0f;
     }
 }
 
@@ -56,7 +53,6 @@ public class ReverseCard : BaseCard
     {
         Color = color;
         Type = "reverse";
-        Rarity = 5.0f;
     }
 }
 
