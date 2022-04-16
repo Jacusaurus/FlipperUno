@@ -17,6 +17,42 @@ public class CardGenerator : MonoBehaviour
         
     }
 
+	public int Number = 700;
+	public int DrawTwo = 75;
+	public int Reverse = 75;
+	public int Skip = 75;
+
+	public int Wild = 37;
+	public int WildDrawFour = 37;
+
+	public int Red = 25;
+	public int Blue = 25;
+	public int Green = 25;
+	public int Yellow = 25;
+
+	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
+	{
+
+		this.Number = Number;
+		this.DrawTwo = DrawTwo;
+		this.Reverse = Reverse;
+		this.Skip = Skip;
+
+		this.Wild = Wild;
+		this.WildDrawFour = WildDrawFour;
+
+		this.Red = Red;
+		this.Blue = Blue;
+		this.Green = Green;
+		this.Yellow = Yellow;
+
+	}
+
+	public CardGenerator()
+	{
+
+	}
+
 	class Range
 	{
 		public int lower;
@@ -24,18 +60,7 @@ public class CardGenerator : MonoBehaviour
 
 	}
 
-	public int Number = 700;
-	public int DrawTwo = 75;
-	public int Reverse = 75;
-	public int Skip = 75;
 
-	public int Wild = 37;
-	public int WildDrawFour = 37; 
-
-	public int Red = 25;
-	public int Blue = 25;
-	public int Green = 25;
-	public int Yellow = 25;
 
 
 	
