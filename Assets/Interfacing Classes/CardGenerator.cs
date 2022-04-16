@@ -7,15 +7,15 @@ public class CardGenerator : MonoBehaviour
 
 	// Start is called before the first frame update
 	void Start()
-    {
-        
-    }
+	{
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	}
+
+	// Update is called once per frame
+	void Update()
+	{
+
+	}
 
 	public int Number = 700;
 	public int DrawTwo = 75;
@@ -41,6 +41,7 @@ public class CardGenerator : MonoBehaviour
 		this.Wild = Wild;
 		this.WildDrawFour = WildDrawFour;
 
+
 		this.Red = Red;
 		this.Blue = Blue;
 		this.Green = Green;
@@ -60,12 +61,8 @@ public class CardGenerator : MonoBehaviour
 
 	}
 
+	public BaseCard GetNewCard()
 
-
-
-	
-
-    public BaseCard GetNewCard()
 	{
 		int typerand = Random.Range(1, Number + DrawTwo + Reverse + Skip + Wild + WildDrawFour + 1);
 		int colorrand = Random.Range(1, Red + Blue + Green + Yellow + 1);
@@ -203,8 +200,7 @@ public class CardGenerator : MonoBehaviour
 		yellowRange.upper = i;
 
 
-
-		if( rand >= redRange.lower && rand <= redRange.upper)
+		if (rand >= redRange.lower && rand <= redRange.upper)
 		{
 			color = Color.RED;
 		}

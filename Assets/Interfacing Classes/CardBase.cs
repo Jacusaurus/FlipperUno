@@ -1,6 +1,5 @@
 using Unity;
 
-
 public enum Type
 {
     NUMBER,
@@ -13,13 +12,9 @@ public enum Type
 public abstract class BaseCard : ICard
 {
 
-
-
     public Color color { get; set; }
     public Type type { get; set; }
     public UnityEngine.Sprite CardSprite { get; set; }
-
-
 
     public virtual void OnPlay()
     {
