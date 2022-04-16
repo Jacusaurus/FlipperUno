@@ -30,7 +30,7 @@ public class CardGenerator : MonoBehaviour
 	public int Skip = 75;
 
 	public int Wild = 37;
-	public int WildDrawFour 37; 
+	public int WildDrawFour = 37; 
 
 	public int Red = 25;
 	public int Blue = 25;
