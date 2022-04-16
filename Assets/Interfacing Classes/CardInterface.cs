@@ -1,5 +1,5 @@
 public interface ICard
 {
-    int Color { get; }
-    string Type { get; }
+    Color color { get; }
+    Type type { get; }
 }
