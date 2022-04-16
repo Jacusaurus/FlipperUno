@@ -1,35 +1,48 @@
 using Unity;
+
+
+public enum Type
+{
+    NUMBER,
+    DRAWTWO,
+    REVERSE,
+    SKIP,
+    WILD,
+    WILDDRAWFOUR
+}
 public abstract class BaseCard : ICard
 {
-    public int Color { get; set; }
-    public string Type { get; set; }
-    public float Rarity { get; set; }
+
+
+
+    public Color color { get; set; }
+    public Type type { get; set; }
     public UnityEngine.Sprite CardSprite { get; set; }
 
-    public BaseCard CreateCard(int color, int number, string type)
+    public BaseCard CreateCard(Color colorin, int numberin, Type typein)
     {
         BaseCard card;
-        if (type == "number")
+        if (typein == Type.NUMBER)
         {
-            card = new NumberCard(color, number);
-        } else if (type == "draw_two")
+            card = new NumberCard(colorin, numberin);
+        } else if (typein == Type.DRAWTWO)
         {
-            card = new DrawTwoCard(color);
-        } else if (type == "skip")
+            card = new DrawTwoCard(colorin);
+        } else if (typein == Type.SKIP)
         {
-            card = new SkipCard(color);
-        } else if (type == "reverse")
+            card = new SkipCard(colorin);
+        } else if (typein == Type.REVERSE)
         {
-            card = new ReverseCard(color);
-        } else if (type == "wild")
+            card = new ReverseCard(colorin);
+        } else if (typein == Type.WILD)
         {
             card = new WildCard();
-        } else if (type == "draw_four")
+        } else if (typein == Type.WILDDRAWFOUR)
         {
             card = new DrawFourCard();
         } else
         {
-            card = new NumberCard(color, number);
+            card = new NumberCard(colorin, numberin);
         }
         return card;
     }
@@ -37,7 +50,7 @@ public abstract class BaseCard : ICard
     public virtual void OnPlay()
     {
         // int current_color = GameManager.Instance.CurrentPlayer.Color;
-        int current_color = Color;
+        Color current_color = color;
         //if (current_color == Color)
         //{
         //    GameManager.Instance.CurrentPlayer.AddCard(this);
@@ -49,4 +62,5 @@ public abstract class BaseCard : ICard
         //}
     }
 }
+
 
