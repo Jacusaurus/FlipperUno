@@ -68,6 +68,18 @@ public class GameController : MonoBehaviour
 
     }
 
+	void Awake()
+	{
+        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
+
+        if (objs.Length > 1)
+        {
+            Destroy(this.gameObject);
+        }
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
 	public void SetupPLayers() 
     {
         players.Add(new CharacterPlayer());
