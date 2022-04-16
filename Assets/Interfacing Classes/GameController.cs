@@ -11,8 +11,17 @@ public class GameController : MonoBehaviour
         CONFIGURE,
         DEAL,
         PLAY,
+        SCORE,
         OVER
     }
+
+    public enum PlayState
+	{
+        DRAW,
+        LAY,
+        ACTION,
+
+	}
 
     public int numberOfPlayers { get; set; }
 
@@ -49,6 +58,8 @@ public class GameController : MonoBehaviour
 	{
 
 	}
+
+
 
 
    

@@ -30,7 +30,7 @@ public class CardGenerator : MonoBehaviour
 	public int Skip = 75;
 
 	public int Wild = 37;
-	public int WildDrawFour 37; 
+	public int WildDrawFour = 37; 
 
 	public int Red = 25;
 	public int Blue = 25;
@@ -38,24 +38,7 @@ public class CardGenerator : MonoBehaviour
 	public int Yellow = 25;
 
 
-	public enum Color
-	{
-		WILD,
-		RED,
-		BLUE,
-		GREEN,
-		YELLOW
-	}
-
-	public enum Type
-	{
-		NUMBER,
-		DRAWTWO,
-		REVERSE,
-		SKIP,
-		WILD,
-		WILDDRAWFOUR
-	}
+	
 
     public BaseCard GetNewCard()
 	{
@@ -66,8 +49,42 @@ public class CardGenerator : MonoBehaviour
 		Type type = GetType(typerand);
 		Color color = GetColor(colorrand);
 
-		BaseCard NewCard =  BaseCard.CreateCard(color, number, type);
+		BaseCard NewCard = CreateCard(color, number, type);
 		return NewCard;
+	}
+
+	public BaseCard CreateCard(Color colorin, int numberin, Type typein)
+	{
+		BaseCard card;
+		if (typein == Type.NUMBER)
+		{
+			card = new NumberCard(colorin, numberin);
+		}
+		else if (typein == Type.DRAWTWO)
+		{
+			card = new DrawTwoCard(colorin);
+		}
+		else if (typein == Type.SKIP)
+		{
+			card = new SkipCard(colorin);
+		}
+		else if (typein == Type.REVERSE)
+		{
+			card = new ReverseCard(colorin);
+		}
+		else if (typein == Type.WILD)
+		{
+			card = new WildCard();
+		}
+		else if (typein == Type.WILDDRAWFOUR)
+		{
+			card = new DrawFourCard();
+		}
+		else
+		{
+			card = new NumberCard(colorin, numberin);
+		}
+		return card;
 	}
 
 	private Type GetType(int rand)
