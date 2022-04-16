@@ -17,13 +17,6 @@ public class CardGenerator : MonoBehaviour
 
 	}
 
-	class Range
-	{
-		public int lower;
-		public int upper;
-
-	}
-
 	public int Number = 700;
 	public int DrawTwo = 75;
 	public int Reverse = 75;
@@ -37,8 +30,39 @@ public class CardGenerator : MonoBehaviour
 	public int Green = 25;
 	public int Yellow = 25;
 
+	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
+	{
+
+		this.Number = Number;
+		this.DrawTwo = DrawTwo;
+		this.Reverse = Reverse;
+		this.Skip = Skip;
+
+		this.Wild = Wild;
+		this.WildDrawFour = WildDrawFour;
+
+
+		this.Red = Red;
+		this.Blue = Blue;
+		this.Green = Green;
+		this.Yellow = Yellow;
+
+	}
+
+	public CardGenerator()
+	{
+
+	}
+
+	class Range
+	{
+		public int lower;
+		public int upper;
+
+	}
 
 	public BaseCard GetNewCard()
+
 	{
 		int typerand = Random.Range(1, Number + DrawTwo + Reverse + Skip + Wild + WildDrawFour + 1);
 		int colorrand = Random.Range(1, Red + Blue + Green + Yellow + 1);

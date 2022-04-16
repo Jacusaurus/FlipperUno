@@ -11,21 +11,54 @@ public class GameController : MonoBehaviour
         CONFIGURE,
         DEAL,
         PLAY,
+        SCORE,
         OVER
     }
 
-    public int numberOfPlayers { get; set; }
+    public enum PlayState
+	{
+        DRAW,
+        LAY,
+        ACTION,
 
-    public int rotaion;//0 clockwise, 1 counterclockwise
+	}
+    [Header("Card Type Stats")]
+    public int Number = 700;
+    public int DrawTwo = 75;
+    public int Reverse = 75;
+    public int Skip = 75;
+    public int Wild = 37;
+    public int WildDrawFour = 37;
+
+    [Header("Card Color Stats")]
+    public int Red = 25;
+    public int Blue = 25;
+    public int Green = 25;
+    public int Yellow = 25;
+
+    [Header("Game Config Settings")]
+    public int numberOfPlayers;
+
+    
+    
+
+
+    [Header("Game State")]
     public GameState gamestate;
-    List<Character> players = new List<Character>();
-    Stack<BaseCard> pile = new Stack<BaseCard>();
+    public PlayState playstate;
+    public int rotaion;//0 clockwise, 1 counterclockwise
+
+    public List<Character> players = new List<Character>();
+    public Stack<BaseCard> pile = new Stack<BaseCard>();
+    public CardGenerator cardGenerator;
+
 
     // Start is called before the first frame update
     void Start()
     {
         gamestate = GameState.MENU;
-
+        numberOfPlayers = 4;
+        
         
     }
 
@@ -49,6 +82,13 @@ public class GameController : MonoBehaviour
 	{
 
 	}
+
+    public void configure()
+	{
+        cardGenerator = new CardGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+    }
+
+
 
 
    

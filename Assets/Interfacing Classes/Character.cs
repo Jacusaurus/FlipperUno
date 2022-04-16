@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+
+    public List<BaseCard> hand = new List<BaseCard>();
+
+    public int numberBoi = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        //hand.Add();
     }
 
     // Update is called once per frame
@@ -15,8 +19,6 @@ public class Character : MonoBehaviour
     {
         
     }
-
-    List<BaseCard> hand { get; set; }
 
     public void GetNewCard()
 	{
