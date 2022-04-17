@@ -19,7 +19,7 @@ public abstract class BaseCard : ICard
     public virtual void OnPlay()
     {
         // int current_color = GameManager.Instance.CurrentPlayer.Color;
-        Color current_color = color;
+        //Color current_color = color;
         //if (current_color == Color)
         //{
         //    GameManager.Instance.CurrentPlayer.AddCard(this);

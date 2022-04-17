@@ -10,7 +10,7 @@ public enum Color
 
 public class NumberCard : BaseCard
 {
-    private int Number { get; set; }
+    public int Number { get; set; }
 
     public NumberCard(Color colorin, int numberin)
     {
@@ -60,9 +60,9 @@ public class WildCard : BaseCard
     }
 }
 
-public class DrawFourCard : BaseCard
+public class WildDrawFourCard : BaseCard
 {
-    public DrawFourCard()
+    public WildDrawFourCard()
     {
         color = Color.WILD;
         type = Type.WILDDRAWFOUR;

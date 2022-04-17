@@ -30,6 +30,7 @@ public class CardGenerator : MonoBehaviour
 	public int Green = 25;
 	public int Yellow = 25;
 
+	public GameObject CardPrefab;
 	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
 	{
 
@@ -61,7 +62,7 @@ public class CardGenerator : MonoBehaviour
 
 	}
 
-	public BaseCard GetNewCard()
+	public GameObject CreateCard()
 
 	{
 		int typerand = Random.Range(1, Number + DrawTwo + Reverse + Skip + Wild + WildDrawFour + 1);
@@ -71,11 +72,13 @@ public class CardGenerator : MonoBehaviour
 		Type type = GetType(typerand);
 		Color color = GetColor(colorrand);
 
-		BaseCard NewCard = CreateCard(color, number, type);
-		return NewCard;
+		BaseCard CardData = GetNewCard(color, number, type);
+		GameObject NewCard = (GameObject)Instantiate(CardPrefab);
+        NewCard.GetComponent<CardController>().SetCard(CardData);
+        return NewCard;
 	}
-
-	public BaseCard CreateCard(Color colorin, int numberin, Type typein)
+    
+	public BaseCard GetNewCard(Color colorin, int numberin, Type typein)
 	{
 		BaseCard card;
 		if (typein == Type.NUMBER)
@@ -100,7 +103,7 @@ public class CardGenerator : MonoBehaviour
 		}
 		else if (typein == Type.WILDDRAWFOUR)
 		{
-			card = new DrawFourCard();
+			card = new WildDrawFourCard();
 		}
 		else
 		{
