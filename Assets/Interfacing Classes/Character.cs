@@ -5,7 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 
-    public List<BaseCard> hand = new List<BaseCard>();
+    public List<GameObject> hand = new List<GameObject>();
 
     public int numberBoi = 0;
     // Start is called before the first frame update

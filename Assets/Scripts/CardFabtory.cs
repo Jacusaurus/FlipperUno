@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardController : MonoBehaviour
+public class CardFabtory : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Sprite sprite;
+
+    public bool playable;
     public BaseCard CardData;
     public List<Sprite> cardFaces;
 

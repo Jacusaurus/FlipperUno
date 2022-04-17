@@ -74,7 +74,7 @@ public class CardGenerator : MonoBehaviour
 
 		BaseCard CardData = GetNewCard(color, number, type);
 		GameObject NewCard = (GameObject)Instantiate(CardPrefab);
-        NewCard.GetComponent<CardController>().SetCard(CardData);
+        NewCard.GetComponent<CardFabtory>().SetCard(CardData);
         return NewCard;
 	}
     
