@@ -141,15 +141,15 @@ public class GameManager : MonoBehaviour
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is DrawTwoCard drawTwoCard && drawTwoCard.color == current_color)
+                else if (ThisCardData is DrawTwoCard drawTwoCard && current_type == Type.DRAWTWO)
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is SkipCard skipCard && skipCard.color == current_color)
+                else if (ThisCardData is SkipCard skipCard && current_type == Type.SKIP)
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is ReverseCard reverseCard && reverseCard.color == current_color)
+                else if (ThisCardData is ReverseCard reverseCard && current_type == Type.REVERSE)
                 {
                     ThisCard.playable = true;
                 }
