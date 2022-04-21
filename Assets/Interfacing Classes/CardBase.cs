@@ -21,11 +21,11 @@ public abstract class BaseCard : ICard
     {
         //if (current_color == Color)
         //{
-        //    GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
+        //    GameManager.Instance.CurrentPlayer.PlayCard(this); or GameManager.Instance.PlayCard()
         //}
         //else
         //{
-        //    GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
+        //    GameManager.Instance.CurrentPlayer.PlayCard(this); or GameManager.Instance.PlayCard()
         //}
     }
 }

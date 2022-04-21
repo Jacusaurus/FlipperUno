@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int current_player;
+    public int current_player_id;
+    public Character CurrentPlayer;
     public Color current_color;
     public Type current_type;
     public int current_number;
@@ -99,31 +100,31 @@ public class GameManager : MonoBehaviour
 
     public void Draw()
     {
-        players[current_player].hand.Add(cardGenerator.CreateCard());
+        players[current_player_id].hand.Add(cardGenerator.CreateCard());
     }
 
     public void AdvancePlayer()
     {
         if (clockwise)
         {
-            current_player++;
-            if (current_player >= numberOfPlayers)
+            current_player_id++;
+            if (current_player_id >= numberOfPlayers)
             {
-                current_player = 0;
+                current_player_id = 0;
             }
         }
         else
         {
-            current_player--;
-            if (current_player < 0)
+            current_player_id--;
+            if (current_player_id < 0)
             {
-                current_player = numberOfPlayers - 1;
+                current_player_id = numberOfPlayers - 1;
             }
         }
-        current_player++;
-        if (current_player >= numberOfPlayers)
+        current_player_id++;
+        if (current_player_id >= numberOfPlayers)
         {
-            current_player = 0;
+            current_player_id = 0;
         }
     }
 
@@ -184,7 +185,20 @@ public class GameManager : MonoBehaviour
         current_type = PlacedCard.type;
     }
 
-    public void PlayCard() { }
+    public void RemoveFromHand(int card_number, int player_number)
+    {
+        players[player_number].hand.RemoveAt(card_number);
+    }
+
+    public void PlayCard(int card_number, int player_number)
+    {
+        if (players[player_number].hand[card_number].GetComponent<CardFabtory>().playable)
+        {
+            players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData.OnPlay();
+            UpdateCardData(players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData);
+            players[player_number].hand.RemoveAt(card_number);
+        }
+    }
 
     void Awake()
     {
