@@ -7,7 +7,9 @@ public enum Type
     REVERSE,
     SKIP,
     WILD,
-    WILDDRAWFOUR
+    WILDDRAWFOUR//,
+    //CHALLENGE,
+    //COMMUNISM
 }
 public abstract class BaseCard : ICard
 {
