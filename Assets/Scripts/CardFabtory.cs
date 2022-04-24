@@ -13,7 +13,7 @@ public class CardFabtory : MonoBehaviour
 
     public void SetCard(BaseCard card)
     {
-        
+        Debug.Log("SetCard" + card.type);
         if (card is NumberCard numberCard)
         {
             int number_offset = numberCard.Number * 4;
@@ -36,6 +36,7 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[number_offset + color_offset];
+            Debug.Log("NumberCard" + (number_offset + color_offset));
 
         }
         else if (card is DrawTwoCard drawTwoCard)
@@ -59,6 +60,7 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 48];
+            Debug.Log("DrawTwoCard" + (color_offset + 48));
         }
         else if (card is SkipCard skipCard)
         {
@@ -81,6 +83,7 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 44];
+            Debug.Log("SkipCard" + (color_offset + 44));
         }
         else if (card is ReverseCard reverseCard)
         {
@@ -103,24 +106,34 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 40];
+            Debug.Log("ReverseCard" + (color_offset + 40));
         }
         else if (card is WildCard wildCard)
         {
             sprite = cardFaces[52];
+            Debug.Log("WildCard" + 52);
         }
         else if (card is WildDrawFourCard wildDrawFourCard)
         {
             sprite = cardFaces[53];
+            Debug.Log("WildDrawFourCard" + 53);
         }
         spriteRenderer.sprite = sprite;
+        gameObject.transform.localScale = new Vector3(15, 15, 15);
+        spriteRenderer.enabled = true;
         CardData = card;
+    }
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.enabled = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        
     }
 
     // Update is called once per frame

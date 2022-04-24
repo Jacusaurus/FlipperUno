@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
-    public CardGenerator cardGenerator;
+    private CardGenerator cardGenerator;
 
 
     public void SetupPlayers()
@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
 
     public void ChooseFirstPlayer()
     {
@@ -79,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void configure()
     {
-        cardGenerator = new CardGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+        cardGenerator.ConfigureGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
     }
 
     //public void AddToHand(GameObject card, Character player)
@@ -242,7 +243,9 @@ public class GameManager : MonoBehaviour
     {
         gamestate = GameState.MENU;
         numberOfPlayers = 4;
-        cardGenerator = new CardGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow); 
+        gameObject.AddComponent<CardGenerator>();
+        cardGenerator = GetComponent<CardGenerator>();
+        configure();
         started = false;
     }
 

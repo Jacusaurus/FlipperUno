@@ -5,17 +5,6 @@ using UnityEngine;
 public class CardGenerator : MonoBehaviour
 {
 
-	// Start is called before the first frame update
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
 
 	public int Number = 700;
 	public int DrawTwo = 75;
@@ -31,7 +20,7 @@ public class CardGenerator : MonoBehaviour
 	public int Yellow = 25;
 
 	public GameObject CardPrefab;
-	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
+	public void ConfigureGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
 	{
 
 		this.Number = Number;
@@ -50,7 +39,17 @@ public class CardGenerator : MonoBehaviour
 
 	}
 
-	public CardGenerator()
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+
+    }
+
+    public CardGenerator()
 	{
 
 	}
@@ -73,7 +72,7 @@ public class CardGenerator : MonoBehaviour
 		Color color = GetColor(colorrand);
 
 		BaseCard CardData = GetNewCard(color, number, type);
-		GameObject NewCard = (GameObject)Instantiate(CardPrefab);
+		GameObject NewCard = GameObject.Instantiate(CardPrefab);
         NewCard.GetComponent<CardFabtory>().SetCard(CardData);
         return NewCard;
 	}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8041455884853037459}
   - component: {fileID: -9031576412630070302}
   - component: {fileID: 7616525953186821464}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: CardFab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
