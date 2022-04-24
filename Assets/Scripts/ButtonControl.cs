@@ -48,4 +48,9 @@ public class ButtonControl : MonoBehaviour
     {
         SceneManager.LoadScene("Rules2");
     }
+
+    public void HouseRulesButton()
+    {
+        SceneManager.LoadScene("HouseRules");
+    }
 }
