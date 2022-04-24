@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardFabtory : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private Sprite sprite;
+    private Image sprite_image;
 
     public bool playable;
     public BaseCard CardData;
     public List<Sprite> cardFaces;
-
+    
     public void SetCard(BaseCard card)
     {
         Debug.Log("SetCard" + card.type);
+        Sprite sprite = cardFaces[0];
         if (card is NumberCard numberCard)
         {
             int number_offset = numberCard.Number * 4;
@@ -118,16 +119,15 @@ public class CardFabtory : MonoBehaviour
             sprite = cardFaces[53];
             Debug.Log("WildDrawFourCard" + 53);
         }
-        spriteRenderer.sprite = sprite;
-        gameObject.transform.localScale = new Vector3(15, 15, 15);
-        spriteRenderer.enabled = true;
         CardData = card;
+        sprite_image.sprite = sprite;
+        sprite_image.enabled = true;
     }
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        sprite_image = GetComponent<Image>();
+        sprite_image.enabled = false;
     }
 
     // Start is called before the first frame update
