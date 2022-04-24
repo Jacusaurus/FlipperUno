@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33456d2fcd491da48af2701673afbc66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playable: 0
   cardFaces:
   - {fileID: 21300000, guid: 24530c3b4ff42a044a54c589e1717adb, type: 3}
   - {fileID: 21300000, guid: 6fe6a1b888bef5548bd97d17bde170c4, type: 3}
