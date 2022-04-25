@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class GameManager : MonoBehaviour
     public Type current_type;
     public int current_number;
     public bool clockwise;
+    // public Transform initial_hand_position;
+
+    private bool started;
 
     public enum GameState
     {
@@ -55,10 +59,10 @@ public class GameManager : MonoBehaviour
 
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
-    public CardGenerator cardGenerator;
+    private CardGenerator cardGenerator;
 
 
-    public void SetupPLayers()
+    public void SetupPlayers()
     {
         players.Add(gameObject.AddComponent<CharacterPlayer>());
         for (int i = numberOfPlayers - 1; i > 0; i--)
@@ -67,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
 
     public void ChooseFirstPlayer()
     {
@@ -75,7 +80,25 @@ public class GameManager : MonoBehaviour
 
     public void configure()
     {
-        cardGenerator = new CardGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+        cardGenerator.ConfigureGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+    }
+
+    //public void AddToHand(GameObject card, Character player)
+    //{
+    //    player.hand.Add(card);
+    //    HorizontalLayoutGroup HandArea = GameObject.Find("PlayerHand").GetComponent<HorizontalLayoutGroup>();
+    //    float width = HandArea.GetComponent<RectTransform>().rect.width;
+    //    float middle = width / 2;
+    //    float cardWidth = card.GetComponent<RectTransform>().rect.width;
+        
+    //}
+
+    public void AddToHand(GameObject card, Character player)
+    {
+        player.hand.Add(card);
+        GridLayoutGroup HandArea = GameObject.Find("HandTemp").GetComponent<GridLayoutGroup>();
+        card.transform.SetParent(HandArea.transform, false);
+
     }
 
     public void Deal()
@@ -84,7 +107,10 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                players[i].hand.Add(cardGenerator.CreateCard());
+                GameObject NewCard = cardGenerator.CreateCard();
+                players[i].hand.Add(NewCard);
+                Character thisPlayer = players[i];
+                AddToHand(NewCard, thisPlayer);
             }
         }
     }
@@ -217,13 +243,20 @@ public class GameManager : MonoBehaviour
     {
         gamestate = GameState.MENU;
         numberOfPlayers = 4;
-
-
+        gameObject.AddComponent<CardGenerator>();
+        cardGenerator = GetComponent<CardGenerator>();
+        configure();
+        started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (started == false)
+        {
+            SetupPlayers();
+            Deal();
+            started = true;
+        }
     }
 }
