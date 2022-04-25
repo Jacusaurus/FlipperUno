@@ -9,7 +9,9 @@ public enum Type
     WILD,
     WILDDRAWFOUR//,
     //CHALLENGE,
-    //COMMUNISM
+    //COMMUNISM,
+    //SWAP,
+    //ROTATE
 }
 public abstract class BaseCard : ICard
 {
@@ -21,14 +23,14 @@ public abstract class BaseCard : ICard
     // TODO: ***IMPORTANT*** - Add method to GameManager that plays card, like below, and also override method below in subclasses
     public virtual void OnPlay()
     {
-        //if (current_color == Color)
-        //{
-        //    GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
-        //}
-        //else
-        //{
-        //    GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
-        //}
+        /*if (current_color == Color)
+        {
+            GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
+        }
+        else
+        {
+            GameManager.Instance.CurrentPlayer.AddCard(this); or GameManager.Instance.PlayCard()
+        }*/
     }
 }
 

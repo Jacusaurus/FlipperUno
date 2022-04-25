@@ -81,4 +81,24 @@ public class CommunismCard : BaseCard
         color = Color.WILD;
         type = Type.COMMUNISM;
     }
-}*/
+}
+
+public class SwapCard : BaseCard
+{
+    public SwapCard()
+    {
+        color = colorin;
+        type = Type.SWAP;
+    }
+}
+
+public class RotateCard : BaseCard
+{
+    public RotateCard()
+    {
+        color = colorin;
+        type = Type.ROTATE;
+    }
+}
+ 
+ */
