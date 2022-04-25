@@ -1,4 +1,3 @@
-
 public enum Color
 {
     WILD,
@@ -20,7 +19,6 @@ public class NumberCard : BaseCard
     }
 
 }
-
 
 public class DrawTwoCard : BaseCard
 {
@@ -49,8 +47,6 @@ public class SkipCard : BaseCard
     }
 }
 
-
-
 public class WildCard : BaseCard
 {
     public WildCard()
@@ -68,4 +64,41 @@ public class WildDrawFourCard : BaseCard
         type = Type.WILDDRAWFOUR;
     }
 }
+/*
+public class ChallengeCard : BaseCard
+{
+    public ChallengeCard()
+    {
+        color = Color.WILD;
+        type = Type.CHALLENGE;
+    }
+}
 
+public class CommunismCard : BaseCard
+{
+    public CommunismCard()
+    {
+        color = Color.WILD;
+        type = Type.COMMUNISM;
+    }
+}
+
+public class SwapCard : BaseCard
+{
+    public SwapCard()
+    {
+        color = colorin;
+        type = Type.SWAP;
+    }
+}
+
+public class RotateCard : BaseCard
+{
+    public RotateCard()
+    {
+        color = colorin;
+        type = Type.ROTATE;
+    }
+}
+ 
+ */

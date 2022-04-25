@@ -36,8 +36,8 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[number_offset + color_offset];
-
         }
+
         else if (card is DrawTwoCard drawTwoCard)
         {
             int color_offset = 0;
@@ -60,6 +60,7 @@ public class CardFabtory : MonoBehaviour
             }
             sprite = cardFaces[color_offset + 48];
         }
+
         else if (card is SkipCard skipCard)
         {
             int color_offset = 0;
@@ -82,6 +83,7 @@ public class CardFabtory : MonoBehaviour
             }
             sprite = cardFaces[color_offset + 44];
         }
+
         else if (card is ReverseCard reverseCard)
         {
             int color_offset = 0;
@@ -104,14 +106,29 @@ public class CardFabtory : MonoBehaviour
             }
             sprite = cardFaces[color_offset + 40];
         }
+
         else if (card is WildCard wildCard)
         {
             sprite = cardFaces[52];
         }
+
         else if (card is WildDrawFourCard wildDrawFourCard)
         {
             sprite = cardFaces[53];
         }
+
+        /*
+         else if (card is ChallengeCard challengeCard
+        {
+            sprite = cardFaces[54];
+        }
+
+        else if (card is CommunismCard communismCard)
+        {
+            sprite = cardFaces[55];
+        }
+         */
+
         spriteRenderer.sprite = sprite;
         CardData = card;
     }

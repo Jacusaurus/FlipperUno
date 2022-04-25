@@ -24,6 +24,8 @@ public class CardGenerator : MonoBehaviour
 
 	public int Wild = 37;
 	public int WildDrawFour = 37;
+	//public int Challenge = 37;
+	//public int Communism = 37;
 
 	public int Red = 25;
 	public int Blue = 25;
@@ -31,7 +33,7 @@ public class CardGenerator : MonoBehaviour
 	public int Yellow = 25;
 
 	public GameObject CardPrefab;
-	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, int Red, int Blue, int Green, int Yellow)
+	public CardGenerator(int Number, int DrawTwo, int Reverse, int Skip, int Wild, int WildDrawFour, /*int Challenge, int Communism */ int Red, int Blue, int Green, int Yellow)
 	{
 
 		this.Number = Number;
@@ -41,7 +43,8 @@ public class CardGenerator : MonoBehaviour
 
 		this.Wild = Wild;
 		this.WildDrawFour = WildDrawFour;
-
+		//this.Challenge = Challenge;
+		//this.Communism = Communism;
 
 		this.Red = Red;
 		this.Blue = Blue;
@@ -105,6 +108,17 @@ public class CardGenerator : MonoBehaviour
 		{
 			card = new WildDrawFourCard();
 		}
+		/*
+		else if (typein == Type.CHALLENGE)
+		{
+			card = new ChallengeCard();
+		}
+
+		else if (typein == Type.COMMUNNISM)
+		{
+			card = new CommunismCard();
+		}
+		 */
 		else
 		{
 			card = new NumberCard(colorin, numberin);
@@ -122,6 +136,8 @@ public class CardGenerator : MonoBehaviour
 		Range skipRange = new Range();
 		Range wildRange = new Range();
 		Range wildDrawFourRange = new Range();
+		//Range challengeRange = new Range();
+		//Range communismRange = new Range();
 
 		int i = 0;
 		numberRange.lower = 1;
@@ -148,6 +164,16 @@ public class CardGenerator : MonoBehaviour
 		i += WildDrawFour;
 		wildDrawFourRange.upper = i;
 
+		/*
+		challengeRange.lower = i + 1;
+		i += Challenge;
+		challengeRange.upper = i;
+
+		communismRange.lower = i + 1;
+		i += Communism;
+		communismRange.upper = i;
+		 */
+
 		if (rand >= numberRange.lower && rand <= numberRange.upper)
 		{
 			type = Type.NUMBER;
@@ -172,6 +198,17 @@ public class CardGenerator : MonoBehaviour
 		{
 			type = Type.WILDDRAWFOUR;
 		}
+		/*
+		if (rand >= challengeRange.lower && rand <= challengeRange.upper)
+		{
+			type = Type.CHALLENGE;
+		}
+		
+		if (rand >= communismRange.lower && rand <= communismRange.upper)
+		{
+			type = Type.COMMUNISM;
+		}
+		 */
 		return type;
 	}
 
