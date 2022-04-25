@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardFabtory : MonoBehaviour
 {
-    private SpriteRenderer spriteRenderer;
-    private Sprite sprite;
+    private Image sprite_image;
 
     public bool playable;
     public BaseCard CardData;
     public List<Sprite> cardFaces;
-
+    
     public void SetCard(BaseCard card)
     {
-        
+        Debug.Log("SetCard" + card.type);
+        Sprite sprite = cardFaces[0];
         if (card is NumberCard numberCard)
         {
             int number_offset = numberCard.Number * 4;
@@ -35,7 +36,6 @@ public class CardFabtory : MonoBehaviour
                 default:
                     break;
             }
-            sprite = cardFaces[number_offset + color_offset];
         }
 
         else if (card is DrawTwoCard drawTwoCard)
@@ -59,6 +59,7 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 48];
+            Debug.Log("DrawTwoCard" + (color_offset + 48));
         }
 
         else if (card is SkipCard skipCard)
@@ -82,6 +83,7 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 44];
+            Debug.Log("SkipCard" + (color_offset + 44));
         }
 
         else if (card is ReverseCard reverseCard)
@@ -105,18 +107,20 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 40];
+            Debug.Log("ReverseCard" + (color_offset + 40));
         }
 
         else if (card is WildCard wildCard)
         {
             sprite = cardFaces[52];
+            Debug.Log("WildCard" + 52);
         }
 
         else if (card is WildDrawFourCard wildDrawFourCard)
         {
             sprite = cardFaces[53];
+            Debug.Log("WildDrawFourCard" + 53);
         }
-
         /*
          else if (card is ChallengeCard challengeCard
         {
@@ -128,16 +132,22 @@ public class CardFabtory : MonoBehaviour
             sprite = cardFaces[55];
         }
          */
-
-        spriteRenderer.sprite = sprite;
+		 
         CardData = card;
+        sprite_image.sprite = sprite;
+        sprite_image.enabled = true;
+    }
+
+    private void Awake()
+    {
+        sprite_image = GetComponent<Image>();
+        sprite_image.enabled = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
+        
     }
 
     // Update is called once per frame

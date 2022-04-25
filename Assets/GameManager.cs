@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public int current_player;
+    public int current_player_id;
+    public Character CurrentPlayer;
     public Color current_color;
     public Type current_type;
     public int current_number;
     public bool clockwise;
+    // public Transform initial_hand_position;
+
+    private bool started;
 
     public enum GameState
     {
@@ -54,10 +59,10 @@ public class GameManager : MonoBehaviour
 
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
-    public CardGenerator cardGenerator;
+    private CardGenerator cardGenerator;
 
 
-    public void SetupPLayers()
+    public void SetupPlayers()
     {
         players.Add(gameObject.AddComponent<CharacterPlayer>());
         for (int i = numberOfPlayers - 1; i > 0; i--)
@@ -66,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
 
     public void ChooseFirstPlayer()
     {
@@ -74,7 +80,25 @@ public class GameManager : MonoBehaviour
 
     public void configure()
     {
-        cardGenerator = new CardGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+        cardGenerator.ConfigureGenerator(Number, DrawTwo, Reverse, Skip, Wild, WildDrawFour, Red, Blue, Green, Yellow);
+    }
+
+    //public void AddToHand(GameObject card, Character player)
+    //{
+    //    player.hand.Add(card);
+    //    HorizontalLayoutGroup HandArea = GameObject.Find("PlayerHand").GetComponent<HorizontalLayoutGroup>();
+    //    float width = HandArea.GetComponent<RectTransform>().rect.width;
+    //    float middle = width / 2;
+    //    float cardWidth = card.GetComponent<RectTransform>().rect.width;
+        
+    //}
+
+    public void AddToHand(GameObject card, Character player)
+    {
+        player.hand.Add(card);
+        GridLayoutGroup HandArea = GameObject.Find("HandTemp").GetComponent<GridLayoutGroup>();
+        card.transform.SetParent(HandArea.transform, false);
+
     }
 
     public void Deal()
@@ -83,7 +107,10 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < 7; j++)
             {
-                players[i].hand.Add(cardGenerator.CreateCard());
+                GameObject NewCard = cardGenerator.CreateCard();
+                players[i].hand.Add(NewCard);
+                Character thisPlayer = players[i];
+                AddToHand(NewCard, thisPlayer);
             }
         }
     }
@@ -99,31 +126,31 @@ public class GameManager : MonoBehaviour
 
     public void Draw()
     {
-        players[current_player].hand.Add(cardGenerator.CreateCard());
+        players[current_player_id].hand.Add(cardGenerator.CreateCard());
     }
 
     public void AdvancePlayer()
     {
         if (clockwise)
         {
-            current_player++;
-            if (current_player >= numberOfPlayers)
+            current_player_id++;
+            if (current_player_id >= numberOfPlayers)
             {
-                current_player = 0;
+                current_player_id = 0;
             }
         }
         else
         {
-            current_player--;
-            if (current_player < 0)
+            current_player_id--;
+            if (current_player_id < 0)
             {
-                current_player = numberOfPlayers - 1;
+                current_player_id = numberOfPlayers - 1;
             }
         }
-        current_player++;
-        if (current_player >= numberOfPlayers)
+        current_player_id++;
+        if (current_player_id >= numberOfPlayers)
         {
-            current_player = 0;
+            current_player_id = 0;
         }
     }
 
@@ -141,15 +168,15 @@ public class GameManager : MonoBehaviour
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is DrawTwoCard drawTwoCard && drawTwoCard.color == current_color)
+                else if (ThisCardData is DrawTwoCard drawTwoCard && current_type == Type.DRAWTWO)
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is SkipCard skipCard && skipCard.color == current_color)
+                else if (ThisCardData is SkipCard skipCard && current_type == Type.SKIP)
                 {
                     ThisCard.playable = true;
                 }
-                else if (ThisCardData is ReverseCard reverseCard && reverseCard.color == current_color)
+                else if (ThisCardData is ReverseCard reverseCard && current_type == Type.REVERSE)
                 {
                     ThisCard.playable = true;
                 }
@@ -184,7 +211,20 @@ public class GameManager : MonoBehaviour
         current_type = PlacedCard.type;
     }
 
-    public void PlayCard() { }
+    public void RemoveFromHand(int card_number, int player_number)
+    {
+        players[player_number].hand.RemoveAt(card_number);
+    }
+
+    public void PlayCard(int card_number, int player_number)
+    {
+        if (players[player_number].hand[card_number].GetComponent<CardFabtory>().playable)
+        {
+            players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData.OnPlay();
+            UpdateCardData(players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData);
+            players[player_number].hand.RemoveAt(card_number);
+        }
+    }
 
     void Awake()
     {
@@ -203,13 +243,20 @@ public class GameManager : MonoBehaviour
     {
         gamestate = GameState.MENU;
         numberOfPlayers = 4;
-
-
+        gameObject.AddComponent<CardGenerator>();
+        cardGenerator = GetComponent<CardGenerator>();
+        configure();
+        started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (started == false)
+        {
+            SetupPlayers();
+            Deal();
+            started = true;
+        }
     }
 }
