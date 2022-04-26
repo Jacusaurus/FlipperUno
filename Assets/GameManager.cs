@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
     [Header("Game State")]
     public GameState gamestate;
     public PlayState playstate;
-    public int rotaion;//0 clockwise, 1 counterclockwise
+    public int rotation;//0 clockwise, 1 counterclockwise
 
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
@@ -170,11 +170,6 @@ public class GameManager : MonoBehaviour
             {
                 current_player_id = numberOfPlayers - 1;
             }
-        }
-        current_player_id++;
-        if (current_player_id >= numberOfPlayers)
-        {
-            current_player_id = 0;
         }
     }
 
