@@ -269,6 +269,7 @@ public class GameManager : MonoBehaviour
         playpile = GameObject.Find("PlayPile").GetComponent<PlayPileScript>();
         configure();
         started = false;
+        playstate = PlayState.LAY;
     }
 
     // Update is called once per frame
@@ -296,4 +297,30 @@ public class GameManager : MonoBehaviour
         //    timeTester += Time.deltaTime;
         //}
     }
+
+    //public void NextPlayer()
+    //{
+    //    if (gclockwise == true)
+    //    {
+    //        if (gameManager.current_player_id < gameManager.players.Count - 1)
+    //        {
+    //            gameManager.current_player_id += 1;
+    //        }
+    //        else
+    //        {
+    //            gameManager.current_player_id = 0;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if (gameManager.current_player_id == 0)
+    //        {
+    //            gameManager.current_player_id = gameManager.players.Count - 1;
+    //        }
+    //        else
+    //        {
+    //            gameManager.current_player_id -= 1;
+    //        }
+    //    }
+    //}
 }

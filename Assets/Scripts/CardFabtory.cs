@@ -11,14 +11,16 @@ public class CardFabtory : MonoBehaviour
     public BaseCard CardData;
     public List<Sprite> cardFaces;
     public int color_offset = 0;
+
     public void SetCard(BaseCard card)
     {
         Sprite sprite = cardFaces[0];
-        if (card is NumberCard numberCard)
+        if (card.type == Type.NUMBER)
         {
-            int number_offset = numberCard.Number * 4;
+            NumberCard numbercard = (NumberCard)card;
+            int number_offset = numbercard.Number * 4;
             color_offset = 0;
-            switch (numberCard.color)
+            switch (numbercard.color)
             {
                 case Color.BLUE:
                     color_offset = 0;
@@ -37,10 +39,10 @@ public class CardFabtory : MonoBehaviour
             }
         }
 
-        else if (card is DrawTwoCard drawTwoCard)
+        else if (card.type  == Type.DRAWTWO)
         {
             int color_offset = 0;
-            switch (drawTwoCard.color)
+            switch (card.color)
             {
                 case Color.BLUE:
                     color_offset = 0;
@@ -60,10 +62,10 @@ public class CardFabtory : MonoBehaviour
             sprite = cardFaces[color_offset + 48];
         }
 
-        else if (card is SkipCard skipCard)
+        else if (card.type == Type.SKIP)
         {
             int color_offset = 0;
-            switch (skipCard.color)
+            switch (card.color)
             {
                 case Color.BLUE:
                     color_offset = 0;
@@ -83,10 +85,10 @@ public class CardFabtory : MonoBehaviour
             sprite = cardFaces[color_offset + 44];
         }
 
-        else if (card is ReverseCard reverseCard)
+        else if (card.type == Type.REVERSE)
         {
             int color_offset = 0;
-            switch (reverseCard.color)
+            switch (card.color)
             {
                 case Color.BLUE:
                     color_offset = 0;
