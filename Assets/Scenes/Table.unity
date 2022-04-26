@@ -424,7 +424,7 @@ MonoBehaviour:
   numberOfPlayers: 0
   gamestate: 0
   playstate: 0
-  rotaion: 0
+  rotation: 0
   players: []
   cardGenerator: {fileID: 0}
 --- !u!20 &519420031
@@ -782,6 +782,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1940807426027518555, guid: 6d1e9fdeeaea7b642ac2d177aa376ecd, type: 3}
   m_PrefabInstance: {fileID: 654405290}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &839804846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1940807426027518554, guid: 6d1e9fdeeaea7b642ac2d177aa376ecd, type: 3}
+  m_PrefabInstance: {fileID: 654405290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &839804847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839804846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd3350b6c35eb047bd081dd03d50356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 2
 --- !u!1 &845062375
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,11 +954,65 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1285970632}
   m_CullTransparentMesh: 1
+--- !u!1 &1301921294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330342295591887367, guid: a76bc9fda6c0eab47868f5d2f4a0c441, type: 3}
+  m_PrefabInstance: {fileID: 540993846}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1301921295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301921294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd3350b6c35eb047bd081dd03d50356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 3
 --- !u!224 &1399054733 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1940807426027518555, guid: 6d1e9fdeeaea7b642ac2d177aa376ecd, type: 3}
   m_PrefabInstance: {fileID: 1940807426847316950}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1514486159 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4330342295591887367, guid: a76bc9fda6c0eab47868f5d2f4a0c441, type: 3}
+  m_PrefabInstance: {fileID: 4009932088049738660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1514486160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1514486159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd3350b6c35eb047bd081dd03d50356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 1
+--- !u!1 &1672962524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1940807426027518554, guid: 6d1e9fdeeaea7b642ac2d177aa376ecd, type: 3}
+  m_PrefabInstance: {fileID: 1940807426847316950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1672962525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672962524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd3350b6c35eb047bd081dd03d50356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_id: 0
 --- !u!1 &1822963104
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1183,6 @@ GameObject:
   - component: {fileID: 1952992762}
   - component: {fileID: 1952992761}
   - component: {fileID: 1952992764}
-  - component: {fileID: 1952992763}
   m_Layer: 5
   m_Name: PlayPile
   m_TagString: Untagged
@@ -1176,75 +1247,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952992759}
   m_CullTransparentMesh: 1
---- !u!114 &1952992763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952992759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33456d2fcd491da48af2701673afbc66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playable: 0
-  cardFaces:
-  - {fileID: 21300000, guid: 24530c3b4ff42a044a54c589e1717adb, type: 3}
-  - {fileID: 21300000, guid: 6fe6a1b888bef5548bd97d17bde170c4, type: 3}
-  - {fileID: 21300000, guid: 7b2375e00526405429bb63013e221f91, type: 3}
-  - {fileID: 21300000, guid: 38339d59124284f4c9ece33ff0f90e7d, type: 3}
-  - {fileID: 21300000, guid: 9aaf41270c5fdac45a4a157479d48781, type: 3}
-  - {fileID: 21300000, guid: d3088cd276fd3c448b215cec82c16ee2, type: 3}
-  - {fileID: 21300000, guid: 7091038efd7ab7245a3689a35b68e3b0, type: 3}
-  - {fileID: 21300000, guid: 926bd96c2891e754fa72179a455eee03, type: 3}
-  - {fileID: 21300000, guid: 23b735367d90b5e428b6290261167ee0, type: 3}
-  - {fileID: 21300000, guid: a309416eaffff3b4baddeefe596c58ab, type: 3}
-  - {fileID: 21300000, guid: 088fb436bb25efe49beb1514d8206712, type: 3}
-  - {fileID: 21300000, guid: 37ad74f5a5ee17f4eaa8d245152358b0, type: 3}
-  - {fileID: 21300000, guid: 73051cc90aa348e4f98a3c3f53474f3c, type: 3}
-  - {fileID: 21300000, guid: b3511b005b58373479c11c76b0810486, type: 3}
-  - {fileID: 21300000, guid: d595732a5c1eafb43adc21549a302d59, type: 3}
-  - {fileID: 21300000, guid: c82018bf58fb36b4b8787f588f336e65, type: 3}
-  - {fileID: 21300000, guid: f2252092523acf449bd288e4da3027d2, type: 3}
-  - {fileID: 21300000, guid: 3a60fa50ee3010247944a95bd9c696c6, type: 3}
-  - {fileID: 21300000, guid: 2493154b387c04845908366f99158b33, type: 3}
-  - {fileID: 21300000, guid: 2bf7fc23ec68b234da0da0f0f66b3371, type: 3}
-  - {fileID: 21300000, guid: d03301d77c051894999af174575b9d4b, type: 3}
-  - {fileID: 21300000, guid: 7111f2cbc573eaa44af9f85a682b6dfe, type: 3}
-  - {fileID: 21300000, guid: c7c7499a9235e3a4098790fe10b87ca1, type: 3}
-  - {fileID: 21300000, guid: 22809190d2522854792fb7adcf067f2e, type: 3}
-  - {fileID: 21300000, guid: 4537ce76464b32940b34ce7cc2a23130, type: 3}
-  - {fileID: 21300000, guid: 613fbe5bbec934f4291adcc879487479, type: 3}
-  - {fileID: 21300000, guid: 67e86bd1ac26b0249901155067478777, type: 3}
-  - {fileID: 21300000, guid: 194af559557a8994ca4b6455187b77e0, type: 3}
-  - {fileID: 21300000, guid: abfab956c5c61a245acd16ea330cb975, type: 3}
-  - {fileID: 21300000, guid: fab4fbb1b6f6500479472412b4e0a07b, type: 3}
-  - {fileID: 21300000, guid: 3069078ff0a6ae141a317fb7c6ae0ad6, type: 3}
-  - {fileID: 21300000, guid: 1e1ca97094f84794187cebcd7b866ae0, type: 3}
-  - {fileID: 21300000, guid: 98d1e7869b26b434297e118ff2bd81a9, type: 3}
-  - {fileID: 21300000, guid: 54769ec60ce6b984fb57b6759b8ec04d, type: 3}
-  - {fileID: 21300000, guid: 160ffae588746504dbe8e97482331ecf, type: 3}
-  - {fileID: 21300000, guid: 75d14c6cef7957141a71924b14b189db, type: 3}
-  - {fileID: 21300000, guid: 6b95db5ea88b0014ea0d803a7ee88367, type: 3}
-  - {fileID: 21300000, guid: de91c314b58c4b14c8cbcc647cf376bd, type: 3}
-  - {fileID: 21300000, guid: 5eabb307ff9c7ac4eaf976400e40354c, type: 3}
-  - {fileID: 21300000, guid: f473eea8cbbc9e44186c88f2fb89eda5, type: 3}
-  - {fileID: 21300000, guid: 3cbb2efe44e6c014e999eb8038224353, type: 3}
-  - {fileID: 21300000, guid: 75b5704a6d512a1448c88dd852f8c8f1, type: 3}
-  - {fileID: 21300000, guid: 830f991dbac12fe4cacb8a83daddb60f, type: 3}
-  - {fileID: 21300000, guid: 399ee5392fb926841af293f1fabcd548, type: 3}
-  - {fileID: 21300000, guid: 4587520f67f112349a74aec47c6fea77, type: 3}
-  - {fileID: 21300000, guid: 9a1d40dacd9f12942b9ddd722f50dee5, type: 3}
-  - {fileID: 21300000, guid: c6dc8d6ed417e7340a279c26a37d1375, type: 3}
-  - {fileID: 21300000, guid: aef5257e059a24d428c35e504010d49a, type: 3}
-  - {fileID: 21300000, guid: 847311d6e81347a4987634c6c41e414c, type: 3}
-  - {fileID: 21300000, guid: 8998fc5c1f8f10240877d97a67ccd11c, type: 3}
-  - {fileID: 21300000, guid: 5fbb97c050084ce4fad89be12e586c12, type: 3}
-  - {fileID: 21300000, guid: 6b7e9fad89adf644cb72ad9a0dfa3294, type: 3}
-  - {fileID: 21300000, guid: 5bf503937cb1377418a953038cf19e46, type: 3}
-  - {fileID: 21300000, guid: 2f1dab17be7a7b147acf2a927fe51f12, type: 3}
-  color_offset: 0
 --- !u!114 &1952992764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,7 +1260,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 519420030}
-  cardFabtory: {fileID: 1952992763}
 --- !u!1 &1966900420
 GameObject:
   m_ObjectHideFlags: 0

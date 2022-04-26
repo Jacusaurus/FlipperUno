@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayPileScript : MonoBehaviour
 {
@@ -16,11 +17,11 @@ public class PlayPileScript : MonoBehaviour
         
     }
     public GameManager gameManager;
-    public CardFabtory cardFabtory;
+    //public CardFabtory cardFabtory;
 
 	public void ChangeCurrentGraphic(BaseCard incomingCard)
 	{
-        cardFabtory.SetCard(gameManager.currentCard);
+        this.GetComponent<Image>().sprite = incomingCard.sprite_image;
 	}
 
 }

@@ -1,4 +1,6 @@
 using Unity;
+using UnityEngine;
+using UnityEngine.UI;
 public enum Type
 {
     NUMBER,
@@ -12,7 +14,7 @@ public enum Type
 public abstract class BaseCard : ICard
 {
 
-
+    public Sprite sprite_image { get; set; }
     public Color color { get; set; }
     public Type type { get; set; }
     public UnityEngine.Sprite CardSprite { get; set; }

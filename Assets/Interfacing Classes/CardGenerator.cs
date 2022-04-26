@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardGenerator : MonoBehaviour
 {
+	private Image sprite_image;
 
 	public GameManager gameManager;
 	public int Number = 700;
@@ -66,6 +68,7 @@ public class CardGenerator : MonoBehaviour
 
 	public GameObject CreateCard()
 	{
+		
 		int typerand = Random.Range(1, Number + DrawTwo + Reverse + Skip + Wild + WildDrawFour + 1);
 		int colorrand = Random.Range(1, Red + Blue + Green + Yellow + 1);
 		int number = Random.Range(0, 10);
@@ -75,7 +78,9 @@ public class CardGenerator : MonoBehaviour
 
 		BaseCard CardData = GetNewCard(color, number, type);
 		GameObject NewCard = GameObject.Instantiate(CardPrefab);
-        NewCard.GetComponent<CardFabtory>().SetCard(CardData);
+
+		NewCard.GetComponent<Image>().sprite = CardData.sprite_image;
+		NewCard.GetComponent<CardScript>().CardData = CardData;
 		NewCard.GetComponent<CardScript>().SetGameManager(gameManager);
 		
         return NewCard;
