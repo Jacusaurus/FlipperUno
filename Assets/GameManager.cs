@@ -59,7 +59,10 @@ public class GameManager : MonoBehaviour
 
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
+    
     private CardGenerator cardGenerator;
+    private float timeTester;
+    private float timeInterval = 10.0f;
 
 
     public void SetupPlayers()
@@ -126,7 +129,6 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < 7; j++)
             {
                 GameObject NewCard = cardGenerator.CreateCard();
-                players[i].hand.Add(NewCard);
                 thisPlayer = players[i];
                 AddToHand(NewCard, thisPlayer);
             }
@@ -276,6 +278,21 @@ public class GameManager : MonoBehaviour
             SetupPlayers();
             Deal();
             started = true;
+        }
+        if (timeTester > timeInterval)
+        {
+            GameObject newCard = cardGenerator.CreateCard();
+            GameObject handResizer = GameObject.Find("PlayerHand");
+            bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(newCard, players[0].hand.Count);
+            if (tooMuch)
+            {
+                Debug.Log("Limit exceeded.  Test failed, which is expected");
+            }
+            AddToHand(newCard, players[0]);
+            timeTester = 0.0f;
+        } else
+        {
+            timeTester += Time.deltaTime;
         }
     }
 }

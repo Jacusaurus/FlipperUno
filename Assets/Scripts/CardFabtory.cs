@@ -13,7 +13,6 @@ public class CardFabtory : MonoBehaviour
     
     public void SetCard(BaseCard card)
     {
-        Debug.Log("SetCard" + card.type);
         Sprite sprite = cardFaces[0];
         if (card is NumberCard numberCard)
         {
@@ -59,7 +58,6 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 48];
-            Debug.Log("DrawTwoCard" + (color_offset + 48));
         }
 
         else if (card is SkipCard skipCard)
@@ -83,7 +81,6 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 44];
-            Debug.Log("SkipCard" + (color_offset + 44));
         }
 
         else if (card is ReverseCard reverseCard)
@@ -107,19 +104,16 @@ public class CardFabtory : MonoBehaviour
                     break;
             }
             sprite = cardFaces[color_offset + 40];
-            Debug.Log("ReverseCard" + (color_offset + 40));
         }
 
         else if (card is WildCard wildCard)
         {
             sprite = cardFaces[52];
-            Debug.Log("WildCard" + 52);
         }
 
         else if (card is WildDrawFourCard wildDrawFourCard)
         {
             sprite = cardFaces[53];
-            Debug.Log("WildDrawFourCard" + 53);
         }
         /*
          else if (card is ChallengeCard challengeCard
