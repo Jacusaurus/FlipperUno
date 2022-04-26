@@ -81,28 +81,7 @@ public class GamePlay : MonoBehaviour
              */
 
             //Continue to next player
-            if (PlayDirection == Direction.CLOCKWISE)
-            {
-                if (CurrentPlayer < TotalPlayers - 1)
-                {
-                    CurrentPlayer += 1;
-                }
-                else
-                {
-                    CurrentPlayer = 0;
-                }
-            }
-            else
-            {
-                if (CurrentPlayer == 0)
-                {
-                    CurrentPlayer = TotalPlayers - 1;
-                }
-                else
-                {
-                    CurrentPlayer -= 1;
-                }
-            }
+            NextPlayer();
 
             //Check for win
             /*
@@ -127,10 +106,30 @@ public class GamePlay : MonoBehaviour
         //hand.Add();
     }
 
-    public void NullFunction()
+    public void NextPlayer()
     {
-        //Move on to next player
-        //Next()
+        if (PlayDirection == Direction.CLOCKWISE)
+        {
+            if (CurrentPlayer < TotalPlayers - 1)
+            {
+                CurrentPlayer += 1;
+            }
+            else
+            {
+                CurrentPlayer = 0;
+            }
+        }
+        else
+        {
+            if (CurrentPlayer == 0)
+            {
+                CurrentPlayer = TotalPlayers - 1;
+            }
+            else
+            {
+                CurrentPlayer -= 1;
+            }
+        }
     }
 
     public void Draw2Function()
@@ -140,7 +139,7 @@ public class GamePlay : MonoBehaviour
         //Force that player to pick up two cards
         //playerX.draw x2
         //Once cards picked up, skip that player
-        //next player +=2
+        NextPlayer();
     }
 
     public void ReverseFunction()
@@ -154,21 +153,16 @@ public class GamePlay : MonoBehaviour
             PlayDirection = Direction.COUNTERCLOCKWISE;
         }
         //Change rotation of play
-        //Move on to next player
-        //next player += 1
     }
 
     public void SkipFunction()
     {
-        //Skip next player
-        //next player +=2
+        NextPlayer();
     }
 
     public void WildFunction()
     {
         //Bring up UI to allow player to pick a color
-        //Move on to next player
-        //next player +=1
     }
 
     public void Draw4Function()
@@ -177,8 +171,7 @@ public class GamePlay : MonoBehaviour
         //playerX
         //Force that player to pick up four cards
         //playerX.draw x4
-        //Once cards picked up, skip that player
-        //next player +=2
+        NextPlayer();
     }
 
     public void ChallengeFunction()
@@ -187,16 +180,12 @@ public class GamePlay : MonoBehaviour
         //playerX
         //Bring up UI for the challenge
         //Mark loser and give out punishment
-        //Move on to next player from the one that played the card
-        //next player +=1
     }
 
     public void CommunismFunction()
     {
         //Collect all cards at the table
         //Re-deal clockwise from left of the card player
-        //Move on to next player
-        //next player +=1
     }
 
     public void SwapFunction()
@@ -204,15 +193,11 @@ public class GamePlay : MonoBehaviour
         //Bring up UI to allow player to pick another player
         //playerX
         //Switch the hands
-        //Move on to next player
-        //next player +=1
     }
 
     public void RotateFunction()
     {
         //Rotate all hand clockwise
-        //Move on to next player
-        //next player +=1
     }
 
 }
