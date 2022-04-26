@@ -95,26 +95,47 @@ public class GameManager : MonoBehaviour
 
     public void AddToHand(GameObject card, Character player)
     {
+        GridLayoutGroup HandArea;
+        Vector3 CardRotation;
+        if (player == players[0])
+        {
+            HandArea = GameObject.Find("PlayerHand").GetComponent<GridLayoutGroup>();
+            CardRotation = new Vector3(0, 0, 0);
+        }
+        else if (player == players[1])
+        {
+            HandArea = GameObject.Find("EnemyHand1").GetComponent<GridLayoutGroup>();
+            CardRotation = new Vector3(0, 0, -90);
+        }
+        else if (player == players[2])
+        {
+            HandArea = GameObject.Find("EnemyHand2").GetComponent<GridLayoutGroup>();
+            CardRotation = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            HandArea = GameObject.Find("EnemyHand3").GetComponent<GridLayoutGroup>();
+            CardRotation = new Vector3(0, 0, -90);
+        }
         player.hand.Add(card);
-        GridLayoutGroup HandArea = GameObject.Find("PlayerHand").GetComponent<GridLayoutGroup>();
         card.transform.SetParent(HandArea.transform, false);
-
+        card.transform.Rotate(CardRotation);
     }
 
     public void Deal()
     {
+        Character thisPlayer;
         for (int i = 0; i < numberOfPlayers; i++)
         {
-            if (i == 0)
+            thisPlayer = players[i];
+            for (int j = 0; j < 7; j++)
             {
-                for (int j = 0; j < 7; j++)
-                {
-                    GameObject NewCard = cardGenerator.CreateCard();
-                    players[i].hand.Add(NewCard);
-                    Character thisPlayer = players[i];
-                    AddToHand(NewCard, thisPlayer);
-                }
+                GameObject NewCard = cardGenerator.CreateCard();
+                players[i].hand.Add(NewCard);
+                thisPlayer = players[i];
+                AddToHand(NewCard, thisPlayer);
             }
+            
         }
     }
 
