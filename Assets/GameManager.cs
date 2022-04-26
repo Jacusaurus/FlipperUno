@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public int current_player_id;
     public Character CurrentPlayer;
+    public BaseCard currentCard;
     public Color current_color;
     public Type current_type;
     public int current_number;
@@ -60,9 +61,11 @@ public class GameManager : MonoBehaviour
     public List<Character> players = new List<Character>();
     public Stack<GameObject> pile = new Stack<GameObject>();
     
-    private CardGenerator cardGenerator;
+    public CardGenerator cardGenerator;
     private float timeTester;
     private float timeInterval = 10.0f;
+    private PlayPileScript playpile;
+
 
 
     public void SetupPlayers()
@@ -225,6 +228,8 @@ public class GameManager : MonoBehaviour
         }
         current_color = PlacedCard.color;
         current_type = PlacedCard.type;
+        currentCard = PlacedCard;
+        playpile.ChangeCurrentGraphic(PlacedCard);
     }
 
     public void RemoveFromHand(int card_number, int player_number)
@@ -232,15 +237,15 @@ public class GameManager : MonoBehaviour
         players[player_number].hand.RemoveAt(card_number);
     }
 
-    public void PlayCard(int card_number, int player_number)
-    {
-        if (players[player_number].hand[card_number].GetComponent<CardFabtory>().playable)
-        {
-            players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData.OnPlay();
-            UpdateCardData(players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData);
-            players[player_number].hand.RemoveAt(card_number);
-        }
-    }
+    //public void PlayCard(int card_number, int player_number)
+    //{
+    //    if (players[player_number].hand[card_number].GetComponent<CardFabtory>().playable)
+    //    {
+    //        players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData.OnPlay();
+    //        UpdateCardData(players[player_number].hand[card_number].GetComponent<CardFabtory>().CardData);
+    //        players[player_number].hand.RemoveAt(card_number);
+    //    }
+    //}
 
     void Awake()
     {
@@ -259,8 +264,9 @@ public class GameManager : MonoBehaviour
     {
         gamestate = GameState.MENU;
         numberOfPlayers = 4;
-        gameObject.AddComponent<CardGenerator>();
+        //gameObject.AddComponent<CardGenerator>();
         cardGenerator = GetComponent<CardGenerator>();
+        playpile = GameObject.Find("PlayPile").GetComponent<PlayPileScript>();
         configure();
         started = false;
     }
@@ -274,20 +280,20 @@ public class GameManager : MonoBehaviour
             Deal();
             started = true;
         }
-        if (timeTester > timeInterval)
-        {
-            GameObject newCard = cardGenerator.CreateCard();
-            GameObject handResizer = GameObject.Find("PlayerHand");
-            bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(newCard, players[0].hand.Count);
-            if (tooMuch)
-            {
-                Debug.Log("Limit exceeded.  Test failed, which is expected");
-            }
-            AddToHand(newCard, players[0]);
-            timeTester = 0.0f;
-        } else
-        {
-            timeTester += Time.deltaTime;
-        }
+        //if (timeTester > timeInterval)
+        //{
+        //    GameObject newCard = cardGenerator.CreateCard();
+        //    GameObject handResizer = GameObject.Find("PlayerHand");
+        //    bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(newCard, players[0].hand.Count);
+        //    if (tooMuch)
+        //    {
+        //        Debug.Log("Limit exceeded.  Test failed, which is expected");
+        //    }
+        //    AddToHand(newCard, players[0]);
+        //    timeTester = 0.0f;
+        //} else
+        //{
+        //    timeTester += Time.deltaTime;
+        //}
     }
 }
