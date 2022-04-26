@@ -224,7 +224,7 @@ public class CardGenerator : MonoBehaviour
 
 		int i = 0;
 		redRange.lower = 1;
-		i += Red; ;
+		i += Red;
 		redRange.upper = i;
 
 		blueRange.lower = i + 1;
