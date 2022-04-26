@@ -96,30 +96,25 @@ public class GameManager : MonoBehaviour
     public void AddToHand(GameObject card, Character player)
     {
         GridLayoutGroup HandArea;
-        Vector3 CardRotation;
         if (player == players[0])
         {
             HandArea = GameObject.Find("PlayerHand").GetComponent<GridLayoutGroup>();
-            CardRotation = new Vector3(0, 0, 0);
         }
         else if (player == players[1])
         {
             HandArea = GameObject.Find("EnemyHand1").GetComponent<GridLayoutGroup>();
-            CardRotation = new Vector3(0, 0, -90);
         }
         else if (player == players[2])
         {
             HandArea = GameObject.Find("EnemyHand2").GetComponent<GridLayoutGroup>();
-            CardRotation = new Vector3(0, 0, 0);
         }
         else
         {
             HandArea = GameObject.Find("EnemyHand3").GetComponent<GridLayoutGroup>();
-            CardRotation = new Vector3(0, 0, -90);
         }
         player.hand.Add(card);
         card.transform.SetParent(HandArea.transform, false);
-        card.transform.Rotate(CardRotation);
+        
     }
 
     public void Deal()
