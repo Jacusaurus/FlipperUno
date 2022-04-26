@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
     public void AddToHand(GameObject card, Character player)
     {
         player.hand.Add(card);
-        GridLayoutGroup HandArea = GameObject.Find("HandTemp").GetComponent<GridLayoutGroup>();
+        GridLayoutGroup HandArea = GameObject.Find("PlayerHand").GetComponent<GridLayoutGroup>();
         card.transform.SetParent(HandArea.transform, false);
 
     }
@@ -105,12 +105,15 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < numberOfPlayers; i++)
         {
-            for (int j = 0; j < 7; j++)
+            if (i == 0)
             {
-                GameObject NewCard = cardGenerator.CreateCard();
-                players[i].hand.Add(NewCard);
-                Character thisPlayer = players[i];
-                AddToHand(NewCard, thisPlayer);
+                for (int j = 0; j < 7; j++)
+                {
+                    GameObject NewCard = cardGenerator.CreateCard();
+                    players[i].hand.Add(NewCard);
+                    Character thisPlayer = players[i];
+                    AddToHand(NewCard, thisPlayer);
+                }
             }
         }
     }
