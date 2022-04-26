@@ -10,14 +10,14 @@ public class CardFabtory : MonoBehaviour
     public bool playable;
     public BaseCard CardData;
     public List<Sprite> cardFaces;
-    
+    public int color_offset = 0;
     public void SetCard(BaseCard card)
     {
         Sprite sprite = cardFaces[0];
         if (card is NumberCard numberCard)
         {
             int number_offset = numberCard.Number * 4;
-            int color_offset = 0;
+            color_offset = 0;
             switch (numberCard.color)
             {
                 case Color.BLUE:
@@ -131,6 +131,10 @@ public class CardFabtory : MonoBehaviour
         sprite_image.sprite = sprite;
         sprite_image.enabled = true;
     }
+
+
+
+
 
     private void Awake()
     {

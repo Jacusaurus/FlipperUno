@@ -1,5 +1,4 @@
 using Unity;
-
 public enum Type
 {
     NUMBER,
@@ -8,13 +7,15 @@ public enum Type
     SKIP,
     WILD,
     WILDDRAWFOUR//,
-    //CHALLENGE,
-    //COMMUNISM,
-    //SWAP,
-    //ROTATE
-}
+                //CHALLENGE,
+                //COMMUNISM,
+                //SWAP,
+                //ROTATE
+};
+
 public abstract class BaseCard : ICard
 {
+
 
     public Color color { get; set; }
     public Type type { get; set; }

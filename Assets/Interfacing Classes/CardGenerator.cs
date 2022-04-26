@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardGenerator : MonoBehaviour
 {
 
-
+	public GameManager gameManager;
 	public int Number = 700;
 	public int DrawTwo = 75;
 	public int Reverse = 75;
@@ -65,7 +65,6 @@ public class CardGenerator : MonoBehaviour
 	}
 
 	public GameObject CreateCard()
-
 	{
 		int typerand = Random.Range(1, Number + DrawTwo + Reverse + Skip + Wild + WildDrawFour + 1);
 		int colorrand = Random.Range(1, Red + Blue + Green + Yellow + 1);
@@ -77,6 +76,8 @@ public class CardGenerator : MonoBehaviour
 		BaseCard CardData = GetNewCard(color, number, type);
 		GameObject NewCard = GameObject.Instantiate(CardPrefab);
         NewCard.GetComponent<CardFabtory>().SetCard(CardData);
+		NewCard.GetComponent<CardScript>().SetGameManager(gameManager);
+		
         return NewCard;
 	}
     
