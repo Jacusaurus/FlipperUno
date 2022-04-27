@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Type current_type;
     public int current_number;
     public bool clockwise;
+    public float card_width;
     // public Transform initial_hand_position;
 
     private bool started;
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
     
     private CardGenerator cardGenerator;
     private float timeTester;
-    private float timeInterval = 10.0f;
+    private float timeInterval = 0.5f;
 
 
     public void SetupPlayers()
@@ -99,24 +100,39 @@ public class GameManager : MonoBehaviour
     public void AddToHand(GameObject card, Character player)
     {
         GridLayoutGroup HandArea;
+        GameObject HandObject;
         if (player == players[0])
         {
-            HandArea = GameObject.Find("PlayerHand").GetComponent<GridLayoutGroup>();
+            HandObject = GameObject.Find("PlayerHand");
         }
         else if (player == players[1])
         {
-            HandArea = GameObject.Find("EnemyHand1").GetComponent<GridLayoutGroup>();
+            HandObject = GameObject.Find("EnemyHand1");
         }
         else if (player == players[2])
         {
-            HandArea = GameObject.Find("EnemyHand2").GetComponent<GridLayoutGroup>();
+            HandObject = GameObject.Find("EnemyHand2");
         }
         else
         {
-            HandArea = GameObject.Find("EnemyHand3").GetComponent<GridLayoutGroup>();
+            HandObject = GameObject.Find("EnemyHand3");
         }
+        HandArea = HandObject.GetComponent<GridLayoutGroup>();
         player.hand.Add(card);
-        card.transform.SetParent(HandArea.transform, false);
+        //float width = HandObject.transform.GetChild(0).gameObject.GetComponent<CardFabtory>().rect.width;
+        float width = HandArea.cellSize.x;
+        card_width = width;
+        // set the card size according to cell size
+        if (player == players[0])
+        {
+            DynamicResize resizer = HandObject.GetComponent<DynamicResize>();
+            if (resizer.CheckCardAddition(card_width, HandArea.transform.childCount))
+            {
+                resizer.ResizeGrid(card_width, HandArea.transform.childCount);
+            }
+            card.transform.SetParent(HandArea.transform, false);
+        }
+        
         
     }
 
@@ -129,7 +145,6 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < 7; j++)
             {
                 GameObject NewCard = cardGenerator.CreateCard();
-                thisPlayer = players[i];
                 AddToHand(NewCard, thisPlayer);
             }
             
@@ -277,17 +292,18 @@ public class GameManager : MonoBehaviour
         {
             SetupPlayers();
             Deal();
+            timeTester = 0.0f;
             started = true;
         }
         if (timeTester > timeInterval)
         {
             GameObject newCard = cardGenerator.CreateCard();
             GameObject handResizer = GameObject.Find("PlayerHand");
-            bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(newCard, players[0].hand.Count);
-            if (tooMuch)
-            {
-                Debug.Log("Limit exceeded.  Test failed, which is expected");
-            }
+            //bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(5.0f, players[0].hand.Count);
+            //if (tooMuch)
+            //{
+            //    Debug.Log("Limit exceeded.  Test failed, which is expected");
+            //}
             AddToHand(newCard, players[0]);
             timeTester = 0.0f;
         } else
