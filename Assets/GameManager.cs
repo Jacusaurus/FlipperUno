@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
     public Stack<GameObject> pile = new Stack<GameObject>();
     
     private CardGenerator cardGenerator;
-    private float timeTester;
-    private float timeInterval = 0.5f;
 
 
     public void SetupPlayers()
