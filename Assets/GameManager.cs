@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
     
     public CardGenerator cardGenerator;
     private float timeTester;
-    private float timeInterval = 10.0f;
+    private float timeInterval = 5.0f;
     private PlayPileScript playpile;
     public Deck deck;
 
@@ -283,6 +283,9 @@ public class GameManager : MonoBehaviour
         cardGenerator = GetComponent<CardGenerator>();
         playpile = GameObject.Find("PlayPile").GetComponent<PlayPileScript>();
         configure();
+        current_color = Color.RED;
+        current_type = Type.NUMBER;
+        current_number = 2;
         started = false;
         playstate = PlayState.LAY;
     }
@@ -307,35 +310,31 @@ public class GameManager : MonoBehaviour
                     break;
 
             }
-			//while (!done)
-			//{
-			if (timeTester > timeInterval)
-			{
+            
+            foreach (Transform child in player.transform)
+            {
+                done = child.GetComponent<CardScript>().IsPlayable();
 
-			}
-			else
-			{
-                timeTester += Time.deltaTime;
-			}
-                foreach (Transform child in player.transform)
+                if (done)
                 {
-                    done = child.GetComponent<CardScript>().IsPlayable();
-
-                    if (done)
-                    {
-                        child.GetComponent<CardScript>().SetPlayCard();
-                    }
-
-
+                    child.GetComponent<CardScript>().SetPlayCard();
                 }
-                deck.OnDeckClick();
-                    //GameObject NewCard = cardGenerator.CreateCard();
-                    //AddToHand(NewCard, players[current_player_id]);
-                
+
+            }
+            
+            if (!done)
+            {
+                AddToHand(cardGenerator.CreateCard(), players[current_player_id]);
+            }
+            
+            //GameObject NewCard = cardGenerator.CreateCard();
+            //AddToHand(NewCard, players[current_player_id]);
+
 
             //}
         }
     }
+
 
     // Update is called once per frame
     void Update()
@@ -346,23 +345,16 @@ public class GameManager : MonoBehaviour
             Deal();
             started = true;
         }
-        EnemyTurn();
-        
-        //if (timeTester > timeInterval)
-        //{
-        //    GameObject newCard = cardGenerator.CreateCard();
-        //    GameObject handResizer = GameObject.Find("PlayerHand");
-        //    bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(newCard, players[0].hand.Count);
-        //    if (tooMuch)
-        //    {
-        //        Debug.Log("Limit exceeded.  Test failed, which is expected");
-        //    }
-        //    AddToHand(newCard, players[0]);
-        //    timeTester = 0.0f;
-        //} else
-        //{
-        //    timeTester += Time.deltaTime;
-        //}
+
+        if (timeTester > timeInterval)
+        {
+            EnemyTurn();
+            timeTester = 0.0f;
+        }
+        else
+        {
+            timeTester += Time.deltaTime;
+        }
     }
 
     //public void NextPlayer()
@@ -392,35 +384,4 @@ public class GameManager : MonoBehaviour
     //}
 
 
-}
-public class GameObjectUtil
-{
-    public delegate void ChildHandler(GameObject child);
-
-    /// <summary>
-    /// Iterates all children of a game object
-    /// </summary>
-    /// <param name="gameObject">A root game object</param>
-    /// <param name="childHandler">A function to execute on each child</param>
-    /// <param name="recursive">Do it on children? (in depth)</param>
-    public static void IterateChildren(GameObject gameObject, ChildHandler childHandler, bool recursive)
-    {
-        DoIterate(gameObject, childHandler, recursive);
-    }
-
-    /// <summary>
-    /// NOTE: Recursive!!!
-    /// </summary>
-    /// <param name="gameObject">Game object to iterate</param>
-    /// <param name="childHandler">A handler function on node</param>
-    /// <param name="recursive">Do it on children?</param>
-    private static void DoIterate(GameObject gameObject, ChildHandler childHandler, bool recursive)
-    {
-        foreach (Transform child in gameObject.transform)
-        {
-            childHandler(child.gameObject);
-            if (recursive)
-                DoIterate(child.gameObject, childHandler, true);
-        }
-    }
 }

@@ -146,7 +146,7 @@ public class NumberCard : BaseCard
                         sprite_image = Resources.Load<Sprite>("Sprites/Uno6 Red");
                         break;
                     case Color.YELLOW:
-                        sprite_image = Resources.Load<Sprite>("Sprites/Uno6 Yellow.png");
+                        sprite_image = Resources.Load<Sprite>("Sprites/Uno6 Yellow");
                         break;
                 }
                 break;

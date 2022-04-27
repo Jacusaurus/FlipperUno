@@ -63,10 +63,9 @@ public class CardScript : MonoBehaviour
             if (CardData.type == Type.WILDDRAWFOUR)
             {
                 Draw4Function();
+                WildFunction();
             }
             Destroy(gameObject);
-
-
 
         }
 		
@@ -122,36 +121,53 @@ public class CardScript : MonoBehaviour
 
     public void Draw2Function()
     {
-        int next;
-        if (gameManager.clockwise == true)
+        int next = gameManager.current_player_id;
+        //if (gameManager.clockwise == true)
+        //{
+        //    if (gameManager.current_player_id < gameManager.players.Count - 1)
+        //    {
+        //        next = gameManager.current_player_id + 1;
+        //    }
+        //    else
+        //    {
+        //        next = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    if (gameManager.current_player_id == 0)
+        //    {
+        //        next = gameManager.players.Count - 1;
+        //    }
+        //    else
+        //    {
+        //        next = gameManager.current_player_id + 1;
+        //    }
+        //}
+
+        if (gameManager.clockwise)
         {
-            if (gameManager.current_player_id < gameManager.players.Count - 1)
-            {
-                next = gameManager.current_player_id + 1;
-            }
-            else
+            next++;
+            if (next >= gameManager.numberOfPlayers)
             {
                 next = 0;
             }
         }
         else
         {
-            if (gameManager.current_player_id == 0)
+            next--;
+            if (next < 0)
             {
-                next = gameManager.players.Count - 1;
-            }
-            else
-            {
-                next = gameManager.current_player_id + 1;
+                next = gameManager.numberOfPlayers - 1;
             }
         }
 
-        
+
         GameObject NewCard = gameManager.cardGenerator.CreateCard();
         gameManager.AddToHand(NewCard, gameManager.players[next]);
         NewCard = gameManager.cardGenerator.CreateCard();
         gameManager.AddToHand(NewCard, gameManager.players[next]);
-        gameManager.AdvancePlayer();
+        gameManager.current_player_id = next;
         gameManager.AdvancePlayer();
     }
 
@@ -384,27 +400,44 @@ public class CardScript : MonoBehaviour
 
     public void Draw4Function()
     {
-        int next;
-        if (gameManager.clockwise == true)
+        int next = gameManager.current_player_id;
+        //if (gameManager.clockwise == true)
+        //{
+        //    if (gameManager.current_player_id < gameManager.players.Count - 1)
+        //    {
+        //        next = gameManager.current_player_id + 1;
+        //    }
+        //    else
+        //    {
+        //        next = 0;
+        //    }
+        //}
+        //else
+        //{
+        //    if (gameManager.current_player_id == 0)
+        //    {
+        //        next = gameManager.players.Count - 1;
+        //    }
+        //    else
+        //    {
+        //        next = gameManager.current_player_id + 1;
+        //    }
+        //}
+
+        if (gameManager.clockwise)
         {
-            if (gameManager.current_player_id < gameManager.players.Count - 1)
-            {
-                next = gameManager.current_player_id + 1;
-            }
-            else
+            next++;
+            if (next >= gameManager.numberOfPlayers)
             {
                 next = 0;
             }
         }
         else
         {
-            if (gameManager.current_player_id == 0)
+            next--;
+            if (next < 0)
             {
-                next = gameManager.players.Count - 1;
-            }
-            else
-            {
-                next = gameManager.current_player_id + 1;
+                next = gameManager.numberOfPlayers - 1;
             }
         }
         GameObject NewCard = gameManager.cardGenerator.CreateCard();
@@ -415,7 +448,7 @@ public class CardScript : MonoBehaviour
         gameManager.AddToHand(NewCard, gameManager.players[next]);
         NewCard = gameManager.cardGenerator.CreateCard();
         gameManager.AddToHand(NewCard, gameManager.players[next]);
-        gameManager.AdvancePlayer();
-        gameManager.AdvancePlayer();
+        gameManager.current_player_id = next;
+        //gameManager.AdvancePlayer();
     }
 }
