@@ -22,9 +22,9 @@ public class Deck : MonoBehaviour
 
     public void OnDeckClick()
 	{
-        if (gameManager.current_player_id == 0)
-        {
-            gameManager.AddToHand(cardGenerator.CreateCard(), gameManager.players[0]);
-        }
+        //if (gameManager.current_player_id == 0)
+        //{
+            gameManager.AddToHand(cardGenerator.CreateCard(), gameManager.players[gameManager.current_player_id]);
+        //}
 	}
 }

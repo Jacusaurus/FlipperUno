@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
     private float timeTester;
     private float timeInterval = 10.0f;
     private PlayPileScript playpile;
+    public Deck deck;
 
 
 
@@ -218,9 +219,10 @@ public class GameManager : MonoBehaviour
     // change color, number, and type of the current card
     public void UpdateCardData(BaseCard PlacedCard)
     {
-        if (PlacedCard is NumberCard numberCard)
+        if (PlacedCard.type == Type.NUMBER)
         {
-            current_number = numberCard.Number;
+            NumberCard numb = (NumberCard)PlacedCard;
+            current_number = numb.Number;
         }
         else
         {
@@ -272,6 +274,56 @@ public class GameManager : MonoBehaviour
         playstate = PlayState.LAY;
     }
 
+    public void EnemyTurn()
+	{
+        if (current_player_id == 1 || current_player_id == 2 || current_player_id == 3)
+        {
+            bool done = false;
+            GameObject player = GameObject.Find("EnemyHand1");
+            switch (current_player_id)
+            {
+
+                case 1:
+                    player = GameObject.Find("EnemyHand1");
+                    break;
+                case 2:
+                    player = GameObject.Find("EnemyHand2");
+                    break;
+                case 3:
+                    player = GameObject.Find("EnemyHand3");
+                    break;
+
+            }
+			//while (!done)
+			//{
+			if (timeTester > timeInterval)
+			{
+
+			}
+			else
+			{
+                timeTester += Time.deltaTime;
+			}
+                foreach (Transform child in player.transform)
+                {
+                    done = child.GetComponent<CardScript>().IsPlayable();
+
+                    if (done)
+                    {
+                        child.GetComponent<CardScript>().SetPlayCard();
+                    }
+
+
+                }
+                deck.OnDeckClick();
+                    //GameObject NewCard = cardGenerator.CreateCard();
+                    //AddToHand(NewCard, players[current_player_id]);
+                
+
+            //}
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -281,6 +333,8 @@ public class GameManager : MonoBehaviour
             Deal();
             started = true;
         }
+        EnemyTurn();
+        
         //if (timeTester > timeInterval)
         //{
         //    GameObject newCard = cardGenerator.CreateCard();
@@ -323,4 +377,37 @@ public class GameManager : MonoBehaviour
     //        }
     //    }
     //}
+
+
+}
+public class GameObjectUtil
+{
+    public delegate void ChildHandler(GameObject child);
+
+    /// <summary>
+    /// Iterates all children of a game object
+    /// </summary>
+    /// <param name="gameObject">A root game object</param>
+    /// <param name="childHandler">A function to execute on each child</param>
+    /// <param name="recursive">Do it on children? (in depth)</param>
+    public static void IterateChildren(GameObject gameObject, ChildHandler childHandler, bool recursive)
+    {
+        DoIterate(gameObject, childHandler, recursive);
+    }
+
+    /// <summary>
+    /// NOTE: Recursive!!!
+    /// </summary>
+    /// <param name="gameObject">Game object to iterate</param>
+    /// <param name="childHandler">A handler function on node</param>
+    /// <param name="recursive">Do it on children?</param>
+    private static void DoIterate(GameObject gameObject, ChildHandler childHandler, bool recursive)
+    {
+        foreach (Transform child in gameObject.transform)
+        {
+            childHandler(child.gameObject);
+            if (recursive)
+                DoIterate(child.gameObject, childHandler, true);
+        }
+    }
 }

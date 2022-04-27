@@ -74,14 +74,17 @@ public class CardScript : MonoBehaviour
 
     public bool IsPlayable()
     {
+        bool playable = false;
         if (CardData.type == Type.WILD || CardData.type == Type.WILDDRAWFOUR)
         {
-            return true;
+            playable = true;
+            return playable;
         }
         else {
-            if (gameManager.currentCard.color == CardData.color)
+            if (gameManager.current_color == CardData.color)
             {
-                return true;
+                playable = true;
+                return playable;
             }
             else { 
                 if (gameManager.currentCard.type == Type.NUMBER && CardData.type == Type.NUMBER)
@@ -90,14 +93,31 @@ public class CardScript : MonoBehaviour
                     NumberCard fabNumberCard = (NumberCard)CardData;
                     if (gameNumberCard.Number == fabNumberCard.Number)
                     {
-                        return true;
+                        playable = true;
+                        return playable;
+                    }
+                    else if (gameManager.current_type == Type.SKIP && CardData.type == Type.SKIP)
+                    {
+                        playable = true;
+                        return playable;
+                    }
+                    else if (gameManager.current_type == Type.REVERSE && CardData.type == Type.REVERSE)
+                    {
+                        playable = true;
+                        return playable;
+                    }
+                    else if (gameManager.current_type == Type.DRAWTWO && CardData.type == Type.DRAWTWO)
+                    {
+                        playable = true;
+                        return playable;
                     }
                 }
             }
+            
         }
 
-        return false;
 
+        return playable;
     }
 
     public void Draw2Function()
