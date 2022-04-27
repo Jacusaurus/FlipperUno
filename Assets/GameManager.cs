@@ -14,7 +14,6 @@ public class GameManager : MonoBehaviour
     public float card_width;
     // public Transform initial_hand_position;
 
-    private bool started;
 
     public enum GameState
     {
@@ -123,15 +122,12 @@ public class GameManager : MonoBehaviour
         float width = HandArea.cellSize.x;
         card_width = width;
         // set the card size according to cell size
-        if (player == players[0])
+        DynamicResize resizer = HandObject.GetComponent<DynamicResize>();
+        if (resizer.CheckCardAddition(card_width, HandArea.transform.childCount))
         {
-            DynamicResize resizer = HandObject.GetComponent<DynamicResize>();
-            if (resizer.CheckCardAddition(card_width, HandArea.transform.childCount))
-            {
-                resizer.ResizeGrid(card_width, HandArea.transform.childCount);
-            }
-            card.transform.SetParent(HandArea.transform, false);
+            resizer.ResizeGridShrink(card_width, HandArea.transform.childCount);
         }
+        card.transform.SetParent(HandArea.transform, false);
         
         
     }
@@ -282,33 +278,11 @@ public class GameManager : MonoBehaviour
         gameObject.AddComponent<CardGenerator>();
         cardGenerator = GetComponent<CardGenerator>();
         configure();
-        started = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (started == false)
-        {
-            SetupPlayers();
-            Deal();
-            timeTester = 0.0f;
-            started = true;
-        }
-        if (timeTester > timeInterval)
-        {
-            GameObject newCard = cardGenerator.CreateCard();
-            GameObject handResizer = GameObject.Find("PlayerHand");
-            //bool tooMuch = handResizer.GetComponent<DynamicResize>().CheckCardAddition(5.0f, players[0].hand.Count);
-            //if (tooMuch)
-            //{
-            //    Debug.Log("Limit exceeded.  Test failed, which is expected");
-            //}
-            AddToHand(newCard, players[0]);
-            timeTester = 0.0f;
-        } else
-        {
-            timeTester += Time.deltaTime;
-        }
+        
     }
 }
