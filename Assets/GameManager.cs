@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Config Settings")]
     public int numberOfPlayers;
+    public bool started;
 
 
 
